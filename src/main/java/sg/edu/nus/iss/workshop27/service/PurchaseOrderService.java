@@ -25,9 +25,10 @@ public class PurchaseOrderService {
         double totalUnitPrice = 0d;
         for(LineItem li: po.getLineItems()){
             totalUnitPrice = li.getQuantity() * li.getUnitPrice();
-            if(totalUnitPrice > 10000){
+            if(totalUnitPrice > 200){
+                System.out.println(totalUnitPrice);
                 OrderTooLargeException ex
-                    = new OrderTooLargeException("Order exceed SGD10000: %d".formatted(totalUnitPrice));
+                    = new OrderTooLargeException("Order exceed SGD200: %,.2f".formatted(totalUnitPrice));
                 ex.setPo(po);
                 throw ex;
             }
